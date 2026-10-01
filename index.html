@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kevin Guyomar — Portfolio</title>
+  <meta name="description" content="Portfolio de Kevin Guyomar : présentation, compétences, projets et contact.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="#accueil" class="logo">KG</a>
+      <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">☰</button>
+      <ul class="nav-links">
+        <li><a href="#a-propos">À propos</a></li>
+        <li><a href="#competences">Compétences</a></li>
+        <li><a href="#projets">Projets</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ACCUEIL -->
+    <section id="accueil" class="hero container">
+      <p class="eyebrow">Bonjour, je suis</p>
+      <h1>Kevin Guyomar</h1>
+      <!-- À personnaliser : ton métier / ton objectif -->
+      <p class="tagline">Développeur web — je conçois des sites et applications simples, rapides et accessibles.</p>
+      <div class="hero-actions">
+        <a href="#projets" class="btn btn-primary">Voir mes projets</a>
+        <a href="#contact" class="btn btn-ghost">Me contacter</a>
+      </div>
+    </section>
+
+    <!-- À PROPOS -->
+    <section id="a-propos" class="section container">
+      <h2>À propos</h2>
+      <div class="about">
+        <!-- Remplace par ta photo : ajoute un fichier (ex. photo.jpg) et utilise <img src="photo.jpg" alt="Kevin Guyomar"> -->
+        <div class="avatar" aria-hidden="true">KG</div>
+        <div>
+          <!-- À personnaliser : ton parcours en quelques phrases -->
+          <p>Présente-toi ici en quelques phrases : ton parcours, ce qui te passionne, ce que tu recherches (stage, alternance, emploi, missions freelance…).</p>
+          <p>Tu peux aussi mentionner ta formation, ta ville et ce qui te distingue.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPÉTENCES -->
+    <section id="competences" class="section container">
+      <h2>Compétences</h2>
+      <!-- À personnaliser : ajoute / retire des compétences -->
+      <div class="skills">
+        <div class="skill-group">
+          <h3>Front-end</h3>
+          <ul class="tags">
+            <li>HTML</li><li>CSS</li><li>JavaScript</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h3>Back-end</h3>
+          <ul class="tags">
+            <li>Node.js</li><li>PHP</li><li>SQL</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h3>Outils</h3>
+          <ul class="tags">
+            <li>Git</li><li>GitHub</li><li>VS Code</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJETS -->
+    <section id="projets" class="section container">
+      <h2>Projets</h2>
+      <!-- À personnaliser : copie un bloc <article> par projet -->
+      <div class="projects">
+        <article class="card">
+          <h3>Nom du projet 1</h3>
+          <p>Courte description : le problème, ce que tu as réalisé, le résultat.</p>
+          <ul class="tags small"><li>HTML</li><li>CSS</li></ul>
+          <div class="card-links">
+            <a href="#" target="_blank" rel="noopener">Démo</a>
+            <a href="#" target="_blank" rel="noopener">Code</a>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Nom du projet 2</h3>
+          <p>Courte description : le problème, ce que tu as réalisé, le résultat.</p>
+          <ul class="tags small"><li>JavaScript</li><li>API</li></ul>
+          <div class="card-links">
+            <a href="#" target="_blank" rel="noopener">Démo</a>
+            <a href="#" target="_blank" rel="noopener">Code</a>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Nom du projet 3</h3>
+          <p>Courte description : le problème, ce que tu as réalisé, le résultat.</p>
+          <ul class="tags small"><li>Node.js</li><li>SQL</li></ul>
+          <div class="card-links">
+            <a href="#" target="_blank" rel="noopener">Démo</a>
+            <a href="#" target="_blank" rel="noopener">Code</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section container contact">
+      <h2>Contact</h2>
+      <p>Une idée, une opportunité ? N'hésite pas à m'écrire.</p>
+      <!-- À personnaliser : ton e-mail et tes réseaux -->
+      <div class="hero-actions">
+        <a href="mailto:ton.email@exemple.com" class="btn btn-primary">M'écrire</a>
+        <a href="https://github.com/Itachi7787" class="btn btn-ghost" target="_blank" rel="noopener">GitHub</a>
+        <a href="#" class="btn btn-ghost" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> Kevin Guyomar</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
