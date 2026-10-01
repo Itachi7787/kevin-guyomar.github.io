@@ -1,24 +1,23 @@
 :root {
-  --bg: #fafaf9;
-  --surface: #ffffff;
-  --text: #1c1917;
-  --muted: #57534e;
-  --border: #e7e5e4;
-  --accent: #2563eb;
-  --accent-text: #ffffff;
+  color-scheme: dark;
+  --bg: #050816;
+  --surface: rgba(15, 23, 42, 0.6);
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --border: rgba(96, 165, 250, 0.18);
+  --accent: #60a5fa;
+  --accent-text: #050816;
   --radius: 12px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0c0a09;
-    --surface: #1c1917;
-    --text: #f5f5f4;
-    --muted: #a8a29e;
-    --border: #292524;
-    --accent: #60a5fa;
-    --accent-text: #0c0a09;
-  }
+/* Fond étoilé animé */
+#stars {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
 }
 
 * { box-sizing: border-box; }
@@ -28,7 +27,8 @@ html { scroll-behavior: smooth; }
 body {
   margin: 0;
   font-family: "Inter", system-ui, sans-serif;
-  background: var(--bg);
+  background: radial-gradient(ellipse at top, #0b1a3a 0%, var(--bg) 60%) fixed;
+  background-color: var(--bg);
   color: var(--text);
   line-height: 1.6;
 }
@@ -102,6 +102,7 @@ a { color: var(--accent); }
 }
 
 .hero h1 {
+  text-shadow: 0 0 30px rgba(96, 165, 250, 0.35);
   font-size: clamp(2.5rem, 8vw, 4.5rem);
   line-height: 1.1;
   margin: 8px 0 16px;
@@ -135,6 +136,7 @@ a { color: var(--accent); }
 .btn-primary {
   background: var(--accent);
   color: var(--accent-text);
+  box-shadow: 0 0 20px rgba(96, 165, 250, 0.35);
 }
 
 .btn-ghost {
@@ -214,6 +216,7 @@ a { color: var(--accent); }
   gap: 12px;
   padding: 24px;
   background: var(--surface);
+  backdrop-filter: blur(4px);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   transition: transform .15s ease, border-color .15s ease;
@@ -222,6 +225,7 @@ a { color: var(--accent); }
 .card:hover {
   transform: translateY(-4px);
   border-color: var(--accent);
+  box-shadow: 0 0 24px rgba(96, 165, 250, 0.25);
 }
 
 .card h3 { margin: 0; }
