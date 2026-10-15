@@ -22,10 +22,16 @@
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+/* Le site tient exactement sur l'écran : pas de défilement de page */
+html, body { height: 100%; }
 
 body {
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
   font-family: "Inter", system-ui, sans-serif;
   background: radial-gradient(ellipse at top, #0b1a3a 0%, var(--bg) 60%) fixed;
   background-color: var(--bg);
@@ -43,8 +49,8 @@ a { color: var(--accent); }
 
 /* Navigation */
 .site-header {
-  position: sticky;
-  top: 0;
+  position: relative;
+  flex-shrink: 0;
   z-index: 10;
   background: color-mix(in srgb, var(--bg) 85%, transparent);
   backdrop-filter: blur(8px);
@@ -79,7 +85,14 @@ a { color: var(--accent); }
   font-weight: 500;
 }
 
-.nav-links a:hover { color: var(--text); }
+.nav-links a:hover,
+.nav-links a.active { color: var(--text); }
+
+.nav-links a.active {
+  text-shadow: 0 0 12px rgba(96, 165, 250, 0.6);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 4px;
+}
 
 .nav-toggle {
   display: none;
@@ -90,9 +103,35 @@ a { color: var(--accent); }
   cursor: pointer;
 }
 
-/* Hero */
-.hero {
-  padding: 120px 16px 100px;
+/* Pages : une seule visible à la fois, chacune remplit l'écran */
+main {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.page {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  overflow-y: auto; /* secours si l'écran est vraiment trop petit */
+  padding: 24px 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px);
+  transition: opacity .4s ease, transform .4s ease, visibility .4s;
+}
+
+.page.active {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.page > .container {
+  width: 100%;
+  margin: auto;
 }
 
 .eyebrow {
@@ -113,6 +152,11 @@ a { color: var(--accent); }
   color: var(--muted);
   max-width: 600px;
   margin: 0 0 32px;
+}
+
+.contact-text {
+  color: var(--muted);
+  margin: 0 0 16px;
 }
 
 .hero-actions {
@@ -143,9 +187,6 @@ a { color: var(--accent); }
   color: var(--accent);
   background: transparent;
 }
-
-/* Sections */
-.section { padding: 72px 16px; }
 
 .section h2 {
   font-size: 2rem;
@@ -233,15 +274,6 @@ a { color: var(--accent); }
 
 .card-links { display: flex; gap: 16px; font-weight: 600; }
 
-.contact p { color: var(--muted); margin: 0 0 24px; }
-
-.site-footer {
-  text-align: center;
-  padding: 32px 16px;
-  color: var(--muted);
-  border-top: 1px solid var(--border);
-}
-
 /* Mobile */
 @media (max-width: 640px) {
   .nav-toggle { display: block; }
@@ -260,7 +292,32 @@ a { color: var(--accent); }
 
   .nav-links.open { display: flex; }
   .nav-links a { display: block; padding: 14px 16px; }
+  .nav-links a.active {
+    border-bottom: none;
+    border-left: 2px solid var(--accent);
+    padding-bottom: 14px;
+  }
 
-  .hero { padding: 80px 16px 64px; }
+  .section h2 { margin-bottom: 20px; }
+  .tagline { font-size: 1.05rem; margin-bottom: 20px; }
+  .avatar, .about img { width: 96px; height: 96px; font-size: 1.8rem; }
+  .card { padding: 16px; gap: 8px; }
+  .projects, .skills { gap: 16px; }
+
+  /* Projets : carrousel horizontal à faire glisser du doigt */
+  .projects {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 8px;
+  }
+  .projects .card {
+    flex: 0 0 85%;
+    scroll-snap-align: start;
+  }
   .about { flex-direction: column; align-items: center; text-align: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page { transition: none; transform: none; }
 }

@@ -1,5 +1,30 @@
-// Année dans le pied de page
-document.getElementById("year").textContent = new Date().getFullYear();
+// Navigation entre les pages (une seule page visible, choisie via l'adresse #...)
+const pages = document.querySelectorAll(".page");
+const navLinks = document.querySelectorAll(".nav-links a");
+
+function showPage() {
+  const id = location.hash.slice(1);
+  const target = document.getElementById(id) || pages[0];
+  pages.forEach((p) => p.classList.toggle("active", p === target));
+  navLinks.forEach((a) =>
+    a.classList.toggle("active", a.getAttribute("href") === "#" + target.id)
+  );
+}
+
+// Change de page sans que le navigateur fasse défiler l'écran
+document.querySelectorAll('a[href^="#"]').forEach((a) =>
+  a.addEventListener("click", (e) => {
+    const id = a.getAttribute("href");
+    if (id.length < 2 || !document.querySelector(id)) return;
+    e.preventDefault();
+    if (location.hash !== id) history.pushState(null, "", id);
+    showPage();
+  })
+);
+
+window.addEventListener("hashchange", showPage);
+window.addEventListener("popstate", showPage);
+showPage();
 
 // Menu mobile
 const toggle = document.querySelector(".nav-toggle");
