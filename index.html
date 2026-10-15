@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=4">
+  <link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
   <canvas id="stars" aria-hidden="true"></canvas>
@@ -133,6 +133,9 @@
             <h3>Lab réseau sous Packet Tracer</h3>
             <p>Segmentation d'un réseau en 3 VLAN, routage inter-VLAN en « router-on-a-stick » et relais DHCP vers un serveur DHCP / DNS / Web.</p>
             <ul class="tags small"><li>Cisco</li><li>VLAN</li><li>DHCP</li><li>DNS</li></ul>
+            <div class="card-links">
+              <a href="#projet-reseau">Voir le projet en détail →</a>
+            </div>
           </article>
           <article class="card">
             <p class="card-kind">Développement</p>
@@ -150,6 +153,98 @@
             </div>
           </article>
         </div>
+      </div>
+    </section>
+
+    <!-- DÉTAIL DU PROJET RÉSEAU (page qui peut défiler, accessible depuis Projets) -->
+    <section id="projet-reseau" class="page section doc-page" data-nav="projets">
+      <div class="container">
+        <a href="#projets" class="back-link">← Retour aux projets</a>
+        <p class="kicker">TP de BTS SIO · Cisco Packet Tracer</p>
+        <h2>Lab réseau : VLAN, router-on-a-stick et relais DHCP</h2>
+        <p class="lead">Objectif : découper le réseau d'une petite structure en 3 VLAN séparés, les faire communiquer grâce à un seul routeur, et leur attribuer automatiquement une adresse IP depuis un serveur central placé sur un autre réseau.</p>
+
+        <ul class="tags">
+          <li>3 VLAN</li><li>9 postes</li><li>Switch Cisco 2960</li><li>Routeur Cisco 1841</li><li>Serveur DHCP / DNS</li>
+        </ul>
+
+        <h3>Topologie</h3>
+        <figure>
+          <a href="assets/projet-reseau/topologie-dhcp.png" target="_blank" rel="noopener">
+            <img src="assets/projet-reseau/topologie-dhcp.png" alt="Topologie Packet Tracer : 9 PC reliés à un switch 2960, lui-même relié à un routeur 1841 puis au serveur. Fenêtre de PC8 montrant une adresse obtenue par DHCP." loading="lazy">
+          </a>
+          <figcaption>9 PC répartis sur 3 VLAN, un switch, un routeur et le serveur. Dans la fenêtre, PC8 (VLAN 30) a bien reçu son adresse par DHCP : 192.168.30.1, passerelle 192.168.30.254, DNS 192.168.40.1.</figcaption>
+        </figure>
+
+        <h3>Plan d'adressage</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Réseau</th><th>Ports du switch</th><th>Adresse réseau</th><th>Passerelle</th><th>Adresses distribuées</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>VLAN 10</td><td>Fa0/1 – Fa0/3</td><td>192.168.10.0/24</td><td>192.168.10.254</td><td>.1 à .250 (DHCP)</td></tr>
+              <tr><td>VLAN 20</td><td>Fa0/4 – Fa0/6</td><td>192.168.20.0/24</td><td>192.168.20.254</td><td>.1 à .250 (DHCP)</td></tr>
+              <tr><td>VLAN 30</td><td>Fa0/7 – Fa0/9</td><td>192.168.30.0/24</td><td>192.168.30.254</td><td>.1 à .250 (DHCP)</td></tr>
+              <tr><td>Serveurs</td><td>— (routeur Fa0/1)</td><td>192.168.40.0/24</td><td>192.168.40.254</td><td>Serveur en fixe : 192.168.40.1</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">Le port Fa0/24 du switch est en <strong>trunk 802.1Q</strong> vers le routeur : un seul câble transporte les trois VLAN.</p>
+
+        <h3>Comment ça marche</h3>
+        <ol class="steps">
+          <li><strong>Les VLAN séparent le réseau.</strong> Le switch range ses ports en trois groupes isolés. Un PC du VLAN 10 ne peut pas joindre directement un PC du VLAN 20.</li>
+          <li><strong>Le routeur relie les VLAN (router-on-a-stick).</strong> Son interface Fa0/0 est découpée en trois sous-interfaces, une par VLAN. Chacune sert de passerelle à son VLAN, et le routeur fait passer le trafic de l'un à l'autre.</li>
+          <li><strong>Le relais DHCP distribue les adresses.</strong> Un PC qui démarre demande une adresse en broadcast, mais un routeur ne transmet pas les broadcasts. La commande <code>ip helper-address 192.168.40.1</code> lui fait relayer la demande jusqu'au serveur, en indiquant de quel VLAN elle vient. Le serveur choisit alors le bon pool d'adresses.</li>
+        </ol>
+
+        <h3>Configuration du routeur</h3>
+        <pre class="code"><code>interface FastEthernet0/0
+ no ip address
+!
+interface FastEthernet0/0.10
+ encapsulation dot1Q 10
+ ip address 192.168.10.254 255.255.255.0
+ ip helper-address 192.168.40.1
+!
+interface FastEthernet0/0.20
+ encapsulation dot1Q 20
+ ip address 192.168.20.254 255.255.255.0
+ ip helper-address 192.168.40.1
+!
+interface FastEthernet0/0.30
+ encapsulation dot1Q 30
+ ip address 192.168.30.254 255.255.255.0
+ ip helper-address 192.168.40.1
+!
+interface FastEthernet0/1
+ ip address 192.168.40.254 255.255.255.0</code></pre>
+
+        <h3>Configuration du serveur DHCP</h3>
+        <figure>
+          <a href="assets/projet-reseau/pool-vlan30.png" target="_blank" rel="noopener">
+            <img src="assets/projet-reseau/pool-vlan30.png" alt="Service DHCP du serveur avec trois pools : vlan10, vlan20 et vlan30." loading="lazy">
+          </a>
+          <figcaption>Un pool par VLAN (vlan10, vlan20, vlan30), chacun avec la passerelle de son VLAN et le DNS 192.168.40.1.</figcaption>
+        </figure>
+
+        <h3>Vérification sur le switch</h3>
+        <figure>
+          <a href="assets/projet-reseau/switch-vlans.png" target="_blank" rel="noopener">
+            <img src="assets/projet-reseau/switch-vlans.png" alt="Liste des ports du switch avec leur VLAN." loading="lazy">
+          </a>
+          <figcaption>Ports Fa0/1-3 en VLAN 10, Fa0/4-6 en VLAN 20, Fa0/7-9 en VLAN 30, et Fa0/24 en trunk vers le routeur.</figcaption>
+        </figure>
+
+        <h3>Pistes d'amélioration</h3>
+        <ul class="improve">
+          <li>Protéger l'accès aux équipements : <code>enable secret</code>, mot de passe console, et SSH à la place de Telnet.</li>
+          <li>Désactiver les ports du switch non utilisés, ou les placer dans un VLAN dédié.</li>
+          <li>Ajouter des ACL pour contrôler quels VLAN peuvent communiquer entre eux.</li>
+        </ul>
+
+        <a href="#projets" class="back-link">← Retour aux projets</a>
       </div>
     </section>
 
@@ -246,6 +341,6 @@
     </section>
   </main>
 
-  <script src="script.js?v=4"></script>
+  <script src="script.js?v=5"></script>
 </body>
 </html>

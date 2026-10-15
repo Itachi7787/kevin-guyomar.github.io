@@ -6,9 +6,11 @@ function showPage() {
   const id = location.hash.slice(1);
   const target = document.getElementById(id) || pages[0];
   pages.forEach((p) => p.classList.toggle("active", p === target));
+  const navId = target.dataset.nav || target.id; // une page de détail allume l'onglet de sa rubrique
   navLinks.forEach((a) =>
-    a.classList.toggle("active", a.getAttribute("href") === "#" + target.id)
+    a.classList.toggle("active", a.getAttribute("href") === "#" + navId)
   );
+  target.scrollTop = 0;
 }
 
 // Change de page sans que le navigateur fasse défiler l'écran
