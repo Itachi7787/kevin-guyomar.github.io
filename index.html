@@ -3,12 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kevin Guyomar — Portfolio</title>
-  <meta name="description" content="Portfolio de Kevin Guyomar : présentation, compétences, projets et contact.">
+  <title>Kevin Guyomar — Étudiant BTS SIO (réseaux et systèmes)</title>
+  <meta name="description" content="Kevin Guyomar, étudiant en BTS SIO option SISR. Recherche de stage en réseaux et systèmes du 18 mai au 25 juin 2027.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+  <!-- Aperçu quand le lien est partagé (LinkedIn, Discord, messagerie…) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Kevin Guyomar — Étudiant BTS SIO (réseaux et systèmes)">
+  <meta property="og:description" content="Recherche de stage en réseaux et systèmes du 18 mai au 25 juin 2027 (6 semaines).">
+  <meta property="og:image" content="https://itachi7787.github.io/kevin-guyomar.github.io/assets/photo.jpg">
+  <meta property="og:url" content="https://itachi7787.github.io/kevin-guyomar.github.io/">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
   <canvas id="stars" aria-hidden="true"></canvas>
@@ -21,6 +30,7 @@
         <li><a href="#a-propos">À propos</a></li>
         <li><a href="#competences">Compétences</a></li>
         <li><a href="#projets">Projets</a></li>
+        <li><a href="#cv">CV</a></li>
       </ul>
     </nav>
   </header>
@@ -28,18 +38,26 @@
   <main>
     <!-- ACCUEIL + CONTACT -->
     <section id="accueil" class="page hero">
-      <div class="container">
-        <p class="eyebrow">Bonjour, je suis</p>
-        <h1>Kevin Guyomar</h1>
-        <!-- À personnaliser : ton métier / ton objectif -->
-        <p class="tagline">Développeur web — je conçois des sites et applications simples, rapides et accessibles.</p>
-        <p class="contact-text">Une idée, une opportunité ? N'hésite pas à m'écrire.</p>
-        <!-- À personnaliser : ton e-mail et tes réseaux -->
-        <div class="hero-actions">
-          <a href="mailto:ton.email@exemple.com" class="btn btn-primary">M'écrire</a>
-          <a href="https://github.com/Itachi7787" class="btn btn-ghost" target="_blank" rel="noopener">GitHub</a>
-          <a href="#" class="btn btn-ghost" target="_blank" rel="noopener">LinkedIn</a>
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">Bonjour, je suis</p>
+          <h1>Kevin Guyomar</h1>
+          <p class="tagline">Étudiant en BTS SIO, option SISR — réseaux et systèmes.</p>
+          <p class="badge">
+            <span class="dot" aria-hidden="true"></span>
+            Recherche de stage du 18 mai au 25 juin 2027 (6 semaines)
+          </p>
+          <div class="hero-actions">
+            <a href="mailto:kevinguyomar.pro@gmail.com" class="btn btn-primary">M'écrire</a>
+            <a href="assets/CV-Kevin-Guyomar.pdf" class="btn btn-ghost" download>Télécharger mon CV</a>
+            <a href="#projets" class="btn btn-ghost">Voir mes projets</a>
+          </div>
+          <p class="contact-line">
+            <a href="mailto:kevinguyomar.pro@gmail.com">kevinguyomar.pro@gmail.com</a>
+            <span aria-hidden="true">·</span> Groix (56)
+          </p>
         </div>
+        <img src="assets/photo.jpg" alt="Photo de Kevin Guyomar" class="hero-photo" width="600" height="800">
       </div>
     </section>
 
@@ -48,12 +66,24 @@
       <div class="container">
         <h2>À propos</h2>
         <div class="about">
-          <!-- Remplace par ta photo : ajoute un fichier (ex. photo.jpg) et utilise <img src="photo.jpg" alt="Kevin Guyomar"> -->
-          <div class="avatar" aria-hidden="true">KG</div>
           <div>
-            <!-- À personnaliser : ton parcours en quelques phrases -->
-            <p>Présente-toi ici en quelques phrases : ton parcours, ce qui te passionne, ce que tu recherches (stage, alternance, emploi, missions freelance…).</p>
-            <p>Tu peux aussi mentionner ta formation, ta ville et ce qui te distingue.</p>
+            <p>Je suis étudiant en BTS SIO (Services Informatiques aux Organisations) au lycée Notre-Dame-de-la-Paix à Ploemeur, avec l'option SISR en ligne de mire : réseaux, systèmes et infrastructure.</p>
+            <p>Avant ça, j'ai obtenu un Bac Pro MELEC puis travaillé plus d'un an sur les chantiers comme ouvrier du second œuvre. J'y ai appris la rigueur, le travail en équipe et le respect des délais et des consignes de sécurité.</p>
+            <p>En dehors des cours, je monte des PC et j'héberge des serveurs de jeu, ce qui m'a donné le goût de l'administration système.</p>
+          </div>
+          <div class="facts">
+            <div class="fact">
+              <h3>Qualités</h3>
+              <p>Autonomie · Organisation · Travail en équipe · Apprentissage rapide</p>
+            </div>
+            <div class="fact">
+              <h3>Langues</h3>
+              <p>Français : langue maternelle<br>Anglais : B2</p>
+            </div>
+            <div class="fact">
+              <h3>Infos</h3>
+              <p>Groix (56) · Permis B</p>
+            </div>
           </div>
         </div>
       </div>
@@ -63,24 +93,29 @@
     <section id="competences" class="page section">
       <div class="container">
         <h2>Compétences</h2>
-        <!-- À personnaliser : ajoute / retire des compétences -->
         <div class="skills">
           <div class="skill-group">
-            <h3>Front-end</h3>
+            <h3>Réseaux</h3>
             <ul class="tags">
-              <li>HTML</li><li>CSS</li><li>JavaScript</li>
+              <li>VLAN</li><li>Routage inter-VLAN</li><li>DHCP (serveur et relais)</li><li>CLI Cisco (switchs, routeurs)</li><li>Packet Tracer</li>
             </ul>
           </div>
           <div class="skill-group">
-            <h3>Back-end</h3>
+            <h3>Systèmes</h3>
             <ul class="tags">
-              <li>Node.js</li><li>PHP</li><li>SQL</li>
+              <li>Montage et configuration de PC</li><li>Hébergement de serveurs</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3>Développement</h3>
+            <ul class="tags">
+              <li>C#</li><li>Python</li><li>HTML / CSS</li><li>SQL</li>
             </ul>
           </div>
           <div class="skill-group">
             <h3>Outils</h3>
             <ul class="tags">
-              <li>Git</li><li>GitHub</li><li>VS Code</li>
+              <li>Visual Studio</li><li>VS Code</li>
             </ul>
           </div>
         </div>
@@ -91,40 +126,126 @@
     <section id="projets" class="page section">
       <div class="container">
         <h2>Projets</h2>
-        <!-- À personnaliser : copie un bloc <article> par projet -->
+        <!-- Pour ajouter une capture : <img src="assets/mon-projet.png" alt="…" class="card-img"> en haut de la carte -->
         <div class="projects">
           <article class="card">
-            <h3>Nom du projet 1</h3>
-            <p>Courte description : le problème, ce que tu as réalisé, le résultat.</p>
-            <ul class="tags small"><li>HTML</li><li>CSS</li></ul>
-            <div class="card-links">
-              <a href="#" target="_blank" rel="noopener">Démo</a>
-              <a href="#" target="_blank" rel="noopener">Code</a>
-            </div>
+            <p class="card-kind">TP de BTS</p>
+            <h3>Lab réseau sous Packet Tracer</h3>
+            <p>Segmentation d'un réseau en 3 VLAN, routage inter-VLAN en « router-on-a-stick » et relais DHCP vers un serveur DHCP / DNS / Web.</p>
+            <ul class="tags small"><li>Cisco</li><li>VLAN</li><li>DHCP</li><li>DNS</li></ul>
           </article>
           <article class="card">
-            <h3>Nom du projet 2</h3>
-            <p>Courte description : le problème, ce que tu as réalisé, le résultat.</p>
-            <ul class="tags small"><li>JavaScript</li><li>API</li></ul>
-            <div class="card-links">
-              <a href="#" target="_blank" rel="noopener">Démo</a>
-              <a href="#" target="_blank" rel="noopener">Code</a>
-            </div>
+            <p class="card-kind">Développement</p>
+            <h3>Application de gestion en C# / WPF</h3>
+            <p>Application de bureau pour gérer des produits et des repas, avec liaison de données et sauvegarde en JSON.</p>
+            <ul class="tags small"><li>C#</li><li>WPF</li><li>JSON</li></ul>
           </article>
           <article class="card">
-            <h3>Nom du projet 3</h3>
-            <p>Courte description : le problème, ce que tu as réalisé, le résultat.</p>
-            <ul class="tags small"><li>Node.js</li><li>SQL</li></ul>
+            <p class="card-kind">Projet perso</p>
+            <h3>Ce portfolio</h3>
+            <p>Site en HTML, CSS et JavaScript sans framework, avec un fond étoilé animé, publié avec GitHub Pages.</p>
+            <ul class="tags small"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
             <div class="card-links">
-              <a href="#" target="_blank" rel="noopener">Démo</a>
-              <a href="#" target="_blank" rel="noopener">Code</a>
+              <a href="https://github.com/Itachi7787/kevin-guyomar.github.io" target="_blank" rel="noopener">Voir le code</a>
             </div>
           </article>
         </div>
       </div>
     </section>
+
+    <!-- CV (cette page peut défiler) -->
+    <section id="cv" class="page section cv-page">
+      <div class="container">
+        <div class="cv-head">
+          <h2>CV</h2>
+          <a href="assets/CV-Kevin-Guyomar.pdf" class="btn btn-primary" download>Télécharger en PDF</a>
+        </div>
+
+        <div class="cv-block">
+          <h3>Formation</h3>
+          <ol class="timeline">
+            <li>
+              <span class="when">2026 – 2028</span>
+              <strong>BTS SIO (Services Informatiques aux Organisations), option SISR visée</strong>
+              <span class="where">Lycée Notre-Dame-de-la-Paix, Ploemeur</span>
+            </li>
+            <li>
+              <span class="when">2024</span>
+              <strong>Bac Pro MELEC (Métiers de l'Électricité et de ses Environnements Connectés)</strong>
+              <span class="where">Lycée Colbert, Lorient</span>
+            </li>
+          </ol>
+        </div>
+
+        <div class="cv-block">
+          <h3>Expérience professionnelle</h3>
+          <ol class="timeline">
+            <li>
+              <span class="when">Septembre 2024 – Décembre 2025</span>
+              <strong>Ouvrier du second œuvre</strong>
+              <span class="where">FAEL Da Silva, Groix</span>
+              <ul>
+                <li>Isolation des combles, pose de cloisons et habillage en placo</li>
+                <li>Montage de structures métalliques</li>
+                <li>Pose de carrelage</li>
+                <li>Travail en équipe sur chantier, dans le respect des délais et des consignes de sécurité</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+
+        <div class="cv-block">
+          <h3>Projets</h3>
+          <ol class="timeline">
+            <li>
+              <strong>Lab réseau sous Packet Tracer (TP de BTS)</strong>
+              <span class="where">Segmentation en 3 VLAN, routage inter-VLAN (router-on-a-stick) et relais DHCP vers un serveur DHCP / DNS / Web.</span>
+            </li>
+            <li>
+              <strong>Application de gestion en C# / WPF</strong>
+              <span class="where">Application de bureau pour gérer des produits et des repas : liaison de données et sauvegarde en JSON.</span>
+            </li>
+          </ol>
+        </div>
+
+        <div class="cv-grid">
+          <div class="cv-block">
+            <h3>Compétences techniques</h3>
+            <ul class="cv-list">
+              <li><strong>Réseaux :</strong> VLAN, routage inter-VLAN, DHCP (serveur et relais), configuration en CLI de switchs et routeurs Cisco, Packet Tracer</li>
+              <li><strong>Systèmes :</strong> montage et configuration de PC, hébergement de serveurs</li>
+              <li><strong>Développement :</strong> C#, Python, HTML/CSS, SQL</li>
+              <li><strong>Outils :</strong> Visual Studio, VS Code</li>
+            </ul>
+          </div>
+          <div class="cv-block">
+            <h3>Coordonnées</h3>
+            <ul class="cv-list">
+              <li><a href="mailto:kevinguyomar.pro@gmail.com">kevinguyomar.pro@gmail.com</a></li>
+              <li>Groix (56)</li>
+              <li>Permis B</li>
+            </ul>
+            <h3>Langues</h3>
+            <ul class="cv-list">
+              <li>Français : langue maternelle</li>
+              <li>Anglais : B2</li>
+            </ul>
+          </div>
+          <div class="cv-block">
+            <h3>Qualités</h3>
+            <ul class="cv-list">
+              <li>Autonomie</li><li>Organisation</li><li>Travail en équipe</li><li>Apprentissage rapide</li>
+            </ul>
+            <h3>Centres d'intérêt</h3>
+            <ul class="cv-list">
+              <li>Montage de PC, serveurs de jeu</li><li>Musculation</li><li>Jeux vidéo</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <script src="script.js?v=3"></script>
+  <script src="script.js?v=4"></script>
 </body>
 </html>
